@@ -1,0 +1,88 @@
+<div style="min-height:calc(100vh - 28vh)">
+    <div class="mb-5" >
+        <h1>{{ error }}</h1>
+        <h2>Neuerscheinungen</h2>
+    
+        <div [id]="'nContainer'" class="d-flex pb-2 flex-wrap">
+            <div  class="d-flex flex-direction-column " *ngFor="let video of videos">
+                <div class="d-flex" *ngIf="timedifference(video.created_at)" >
+                    <div  >
+                        <div (mouseenter)="isHidden = !isHidden; active=video.id" *ngIf="active_video == ''">
+                            <div class="me-5 mb-5">
+                                <video style="width:250px;height:150px;object-fit:cover;" *ngIf="active != video.id">
+                                    <source src="{{convertVideoPath(video.video_file_480p)}}" type="video/mp4" >
+                                </video>
+                            </div>
+                        </div>
+                        <div *ngIf="(isHidden && active == video.id) || (active_video == video.id)"
+                            class="videoHover bg-danger rounded-3 p-1 me-5 mb-5 d-flex flex-column"
+                            (mouseleave)="isHidden = !isHidden; active= ''">
+                            <div class="d-flex">
+                                <div>
+                                    <span class="text-warning">{{video.title}}</span>
+                                </div>
+                            </div>
+                            <video [id]="'nVideoPlayer' + video.id" class="align-self-center"
+                            style="width:350px;height:200px;object-fit:cover;" preload="auto">
+                                <source [id]="'nVideoSource' + video.id"
+                                    src="{{convertVideoPath(video.video_file_480p)}}" type="video/mp4" >
+                            </video>
+                            <div class="d-flex justify-content-between align-items-center m-0 p-0 mt-2">
+                                <div class="d-flex">
+                                    <a [id]="'nPlayButton' + video.id" (click)="startVideo(video.id)"
+                                        style="cursor:pointer;">
+                                        <span class="material-icons">
+                                            play_circle
+                                        </span>
+                                    </a>
+                                    <a [id]="'nPauseButton' + video.id" class="d-none" (click)="pauseVideo(video.id)"
+                                        style="cursor:pointer;">
+                                        <span class="material-icons">
+                                            pause_circle
+                                        </span>
+                                    </a>
+                                </div>
+                                <div class="d-flex">
+                                    <span>{{solution}}</span>
+                                    <a (click)="solutionChange = !solutionChange" style="cursor:pointer;"
+                                        class="align-self-end">
+                                        <span class="material-icons">
+                                            video_settings
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div *ngIf="solutionChange" class="d-flex flex-column bg-secondary align-items-center">
+                                <a (click)="playerFormatChange('original', video.video_file, video.id )"
+                                    style="cursor:pointer;">Original</a>
+                                <a (click)="playerFormatChange('480p', video.video_file_480p, video.id)"
+                                    style="cursor:pointer;">480p</a>
+                                <a (click)="playerFormatChange('720p', video.video_file_720p, video.id)"
+                                    style="cursor:pointer;">720p</a>
+                                <a (click)="playerFormatChange('1080p', video.video_file_1080p, video.id)"
+                                    style="cursor:pointer;">1080p</a>
+                            </div>
+                            <div class="d-flex align-items-center gap-2">
+                                <h4 class="m-0 text-dark" style="font-size:0.8rem;gap:1rem;">Updloaddate</h4>
+                                <span class="text-muted" style="font-size:0.75rem;"> {{convertDate(video.created_at)}}</span>
+                            </div>
+                            <div class="d-flex align-items-center gap-2">
+                                <h4 class="m-0 text-dark" style="font-size:0.8rem;">Genre</h4>
+                                <span class="text-muted" style="font-size:0.75rem;">{{showCategory(video.category)}}</span>
+                            </div>
+                            <div class="d-flex align-items-center gap-2">
+                                <h4 class="m-0 text-dark" style="font-size:0.8rem;">Auhtor</h4>
+                                <span class="text-muted" style="font-size:0.75rem;"> {{video.author}}</span>
+                            </div>
+                            <div>
+                                <h4 class="m-0 text-dark" style="font-size:0.8rem;">Description</h4>
+                                <p class="text-muted" style="font-size:0.75rem; max-width:335px;"> {{video.description}}</p>
+                            </div>
+                        </div>
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

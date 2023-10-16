@@ -1,0 +1,12 @@
+<div class="d-flex align-items-center justify-content-between">
+    <div style="display:flex;height:5rem;align-items:center;">
+        <span style="color:red">DOGFLIX</span>
+        <a routerLinkActive="active" routerLink="/site/videos">Startseite</a>
+        <a routerLinkActive="active" routerLink="/site/short-films">Kurzfilme</a>
+        <a routerLinkActive="active" routerLink="/site/films">Filme</a>
+        <a routerLinkActive="active" routerLink="/site/new-films">Neuerscheinungen</a>
+    </div>
+    <div>
+        <a type="button" class="btn text-danger" (click)="auth.logout()">Logout</a>
+    </div>
+</div>

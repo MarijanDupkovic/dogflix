@@ -7,14 +7,14 @@
         <form class="d-flex flex-column form-floating" (ngSubmit)="login()">
 
             <div class="form-floating mb-3 w-50 align-self-center" style="max-width:18rem;">
-                <input type="email" class="form-control text-bg-secondary border-0" placeholder="name@example.com"
+                <input type="email" class="form-control text-bg-secondary border-0 shadow-none" placeholder="name@example.com"
                     name="email" id="emailField" [(ngModel)]="email" required>
                 <label for="emailField">Enter your email</label>
 
             </div>
             <div class="form-floating mb-3 w-50 align-self-center d-flex " style="max-width:18rem;">
 
-                <input [type]="hide ? 'password' : 'text'" class="form-control text-bg-secondary border-0"
+                <input [type]="hide ? 'password' : 'text'" class="form-control text-bg-secondary border-0 shadow-none"
                     name="password" id="passwordField" [(ngModel)]="password" placeholder="Enter your password">
                 <button tabindex="-1" (click)="togglePWField($event)" class="border-0 text-bg-secondary rounded-2"  [attr.aria-label]="'Hide password'"
                     [attr.aria-pressed]="hide" style="color: white;position:absolute;right:0;bottom:0;top:0;">

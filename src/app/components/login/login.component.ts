@@ -24,7 +24,6 @@ export class LoginComponent {
       resp = await this.authService.loginWithEmailandPassword(this.email, this.password);
       localStorage.setItem('token', resp['token']);
       this.router.navigateByUrl('/site/videos');
-      console.log(resp);
     } catch (e) {
       let error: any = e;
       if (error.status == 403) {

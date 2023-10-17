@@ -26,7 +26,7 @@ export class SignupComponent {
       this.send = true;
       let resp: any = await this.authService.signUp(this.email, this.password, this.password2, this.username);
       this.success = true;
-      setTimeout(() => this.router.navigateByUrl('/login'), 7000);
+      setTimeout(() => this.router.navigateByUrl('/login'), 5000);
     } catch (e) {
       let error: any = e;
       if (error.status == 405) {
